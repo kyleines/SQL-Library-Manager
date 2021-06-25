@@ -3,6 +3,8 @@ extends layout
 block content 
     h1= title 
 
+    include validation 
+
     form(action="/books/" + book.id, method="post")
         include form 
 
@@ -13,5 +15,5 @@ block content
         method="post"
         onsubmit="return confirm('Are you sure you want to delete this book?');"
     )
-        p: a(class="button" href="/books") Cancel 
+        p: a(class="button" href="/books/page/1") Cancel 
         p: input(type="submit" value="Delete Book") 

@@ -1,20 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p: a(class='button' href='/books/new') Create New Book 
+  include header
 
-  table 
-    thead 
-      tr 
-        th Title 
-        th Author 
-        th Genre 
-        th Year 
-    tbody 
-      each book in books 
-        tr 
-          td: a(href=`/books/${book.id}`)= book.title
-          td= book.author 
-          td= book.genre 
-          td= book.year 
+  include table 
+
+  ul.nav
+    each nav in navLinks 
+      li.nav: a(class='button' href=`/books/page/${navLinks[nav-1]}`) #{navLinks[nav-1]}

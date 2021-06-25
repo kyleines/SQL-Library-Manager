@@ -1,5 +1,7 @@
 extends layout
 
 block content 
-    h1= error.status 
-    p= error.message
+    h1 #{error.status}: #{error.message} 
+    p Sorry, there's nothing here.
+
+    p: a(class='button' href='/books/page/1') Books
