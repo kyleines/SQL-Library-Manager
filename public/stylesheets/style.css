@@ -1,6 +1,30 @@
 body {
+  background: url(../images/books-1280x853.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 10px 50px 50px;
   font: 18px "Garamond", serif;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.85);
+  width: 700px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 10px 50px 50px;
+}
+
+input#search-submit {
+  margin-left: 0px;
+}
+
+ul.nav {
+  width: 100%;
+  text-align: center;
+}
+
+li.nav {
+  display: inline-block;
+  margin-right: 5px;
 }
 
 a {
@@ -53,6 +77,10 @@ h2 {
   padding-top: 20px;
 }
 
+table {
+  width: 700px;
+}
+
 th {
   border-bottom: 2px solid #D8B493;
   text-align: left;
@@ -64,7 +92,7 @@ tr {
 }
 
 tr:nth-child(2n) {
-  background: #E7E7E7;
+  background: #dadada;
 }
 
 td {
