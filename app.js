@@ -1,4 +1,19 @@
-var createError = require('http-errors');
+/************************************************
+Treehouse FSJS Techdegree:
+Project 8 - SQL Library Manager
+************************************************/
+
+/*
+Dear Reviewer,
+I appreciate you for taking the time to review my project! 
+Your feedback is important to me and crucial to my growth as a developer.
+With the following code I hope to earn the "Exceeds Expectations" grade, and 
+I humbly request that you reject my submission if I don't meet those requirements.
+
+Thank you again!
+-Kyle
+*/
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -8,6 +23,7 @@ var indexRouter = require('./routes/index');
 
 var app = express();
 
+// Sync and Test server connection
 const db = require('./models/index');
 (async () => {
   await db.sequelize.sync();
@@ -32,19 +48,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use((req, res) => {
+  const error = new Error();
+  error.status = 404;
+  error.message = 'Page Not Found';
+
+  res.render('page-not-found', {error});
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  err.status = 500;
+  err.message = "Something went wrong";
+  console.log(err.status, err.message);
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.render('500-error', {err});
 });
 
 module.exports = app;
