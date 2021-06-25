@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+    h1= title 
+
+    if books.length > 0
+        include table 
+        ul.nav  
+            each nav in navLinks 
+                li.nav: a(class='button' href=`/books/results/${navLinks[nav-1]}/?search=${searchValue}`) #{navLinks[nav-1]}
+    else 
+        p.error Sorry, no results for that search.
+
+    p: a(class='button' href='/books/page/1') Books
