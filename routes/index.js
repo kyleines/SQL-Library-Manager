@@ -24,9 +24,17 @@ navHandler = (books) => {
   return navLinks;
 }
 
-// Home
+// Home (redirects)
 router.get('/', asyncHandler(async (req, res) => {
-  res.redirect('/books');
+  res.redirect('/books/page/1');
+}));
+
+router.get('/books', asyncHandler(async (req, res) => {
+  res.redirect('/books/page/1');
+}));
+
+router.get('/books/page', asyncHandler(async (req, res) => {
+  res.redirect('/books/page/1');
 }));
 
 // Book List
@@ -52,7 +60,7 @@ router.get('/books/new', asyncHandler(async (req, res) => {
 }));
 
 // Post new book to database
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/books/new', asyncHandler(async (req, res) => {
   let book;
   try {
     book = await Book.create(req.body);
