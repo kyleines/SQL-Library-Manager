@@ -62,7 +62,7 @@ app.use(function(err, req, res, next) {
   err.message = "Something went wrong";
   console.log(err.status, err.message);
 
-  res.render('500-error', {err});
+  res.render('error', {err});
 });
 
 module.exports = app;
