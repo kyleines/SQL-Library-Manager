@@ -41,7 +41,7 @@ router.get('/books/page', asyncHandler(async (req, res) => {
 router.get('/books/page/:page', asyncHandler(async (req, res) => {
   const books = await Book.findAll();
   const offset = (req.params.page - 1) * 10;
-  const displayBooks = await Book.findAll({offset, limit: 10})
+  const displayBooks = await Book.findAll({offset, limit: 10, order: [["title", "ASC"]]});
 
   if (offset >= 0 && displayBooks.length > 0) {
     res.render('index', {books: displayBooks, title: 'Books', navLinks: navHandler(books)});
@@ -88,7 +88,7 @@ router.get('/books/results/:page/', asyncHandler(async (req, res) => {
   }
   const offset = (req.params.page - 1) * 10;
   const books = await Book.findAll({where: searchQuery});
-  const displayBooks = await Book.findAll({where: searchQuery, offset, limit: 10})
+  const displayBooks = await Book.findAll({where: searchQuery, offset, limit: 10, order:[["title", "ASC"]]})
   res.render('results', {books: displayBooks, title: 'Search Results', navLinks: navHandler(books), searchValue})
 }));
 
